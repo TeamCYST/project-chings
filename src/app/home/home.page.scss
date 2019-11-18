@@ -18,7 +18,7 @@ ion-content{
       }
       .cards-title{
         color: #fff;
-        margin-top: 25px;
+        margin-top: 15px;
         font-weight: 300;
         width: 100%;
         h3{
@@ -53,7 +53,7 @@ ion-content{
       }
 
       .instructions{
-        margin-top: 10px;
+        //margin-top: 10px;
         padding-left: 15px;
         color: #352643;
         h3{
@@ -73,12 +73,13 @@ ion-content{
           margin-top: 30px;
         }
         .buttons{
-         margin: 0 20px;
+         //margin: 0 20px;
           width: 100%;
+          display: flex;
           justify-content: space-around;
           ion-col{
             button{
-              margin: 10px 20px;
+              margin: 0px 20px;
               color: #fff;
               background-color: #E03F5C;
               border-radius: 20px;

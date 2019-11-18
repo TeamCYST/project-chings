@@ -13,7 +13,7 @@
                         <ion-slides>
                             <ion-slide>
                                 <div class="image-slide">
-                                    <img src="./../../assets/18353.jpg" alt="slide 1">
+                                    <img [src]="currentImage" *ngIf="currentImage" alt="slide 1">
                                     <span>One</span>
                                 </div>
                             </ion-slide>
@@ -50,7 +50,9 @@
                             </button>
                         </ion-col>
                         <ion-col> 
-                            <button class="ion-activatable">Camera
+                            <button class="ion-activatable" (click) = "takePictures()"> 
+                                    <ion-icon name="camera"></ion-icon>
+                                    Camera
                             <ion-ripple-effect></ion-ripple-effect>
                             </button>
                         </ion-col>

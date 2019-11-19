@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,16 @@ export class HomePage {
 
   currentImage:any ="./../../assets/18353.jpg";
 
-  constructor(private camera: Camera) {}
+  constructor(
+    private camera: Camera,
+    private file: File,
+    
+    ) {}
 
-  takePictures(){
+  cameraFnx(sourceType){
     const options: CameraOptions = {
       quality: 100,
+      sourceType: sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
@@ -27,4 +33,11 @@ export class HomePage {
      });
   }
 
+  takePictures(){
+    this.cameraFnx(this.camera.PictureSourceType.CAMERA)
+  }
+
+  pickImage(){
+    this.cameraFnx(this.camera.PictureSourceType.PHOTOLIBRARY)
+  }
 }

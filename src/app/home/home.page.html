@@ -14,19 +14,19 @@
                             <ion-slide>
                                 <div class="image-slide">
                                     <img [src]="currentImage" *ngIf="currentImage" alt="slide 1">
-                                    <span>One</span>
+                                    <span><p>One</p></span>
                                 </div>
                             </ion-slide>
                             <ion-slide>
                                 <div class="image-slide">
                                     <img src="./../../assets/532d0341186be12412c6a4362cc08710.jpg" alt="slide 2">
-                                    <span>Two</span>
+                                    <span><p>asdfadsfa</p></span>
                                 </div>
                             </ion-slide>
                             <ion-slide>
                                 <div class="image-slide">
                                     <img src="./../../assets/824b877bf4c731e3fcc13a8881c3e982.jpg" alt="slide 3">
-                                    <span>Three</span>
+                                    <span><p>Onasdfasdfafasdfe</p></span>
                                 </div>
                             </ion-slide>
                         </ion-slides>
@@ -45,13 +45,13 @@
                     <h3>Choose an image:</h3>
                     <div class="buttons">
                         <ion-col> 
-                            <button class="ion-activatable">Galley
+                            <button class="ion-activatable" (click) = "pickImage()">
+                                Galley
                             <ion-ripple-effect></ion-ripple-effect>
                             </button>
                         </ion-col>
                         <ion-col> 
                             <button class="ion-activatable" (click) = "takePictures()"> 
-                                    <ion-icon name="camera"></ion-icon>
                                     Camera
                             <ion-ripple-effect></ion-ripple-effect>
                             </button>

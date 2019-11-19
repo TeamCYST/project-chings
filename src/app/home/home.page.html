@@ -11,12 +11,19 @@
                     <h3>Samples</h3>
                     <div class="cards">
                         <ion-slides>
-                            <ion-slide>
-                                <div class="image-slide">
-                                    <img [src]="currentImage" *ngIf="currentImage" alt="slide 1">
-                                    <span><p>One</p></span>
-                                </div>
+                            <ion-slide *ngFor="let photo of photoService.photos">
+                                    <div class="image-slide">
+                                        <img [src]="photo.data" alt="slide 1">
+                                        <span><p>One</p></span>
+                                    </div>
                             </ion-slide>
+                            <ion-slide>
+                                    <div class="image-slide">
+                                        <img src="./../../assets/532d0341186be12412c6a4362cc08710.jpg" alt="slide 1">
+                                        <span><p>One</p></span>
+                                    </div>
+                            </ion-slide>
+                            <!--
                             <ion-slide>
                                 <div class="image-slide">
                                     <img src="./../../assets/532d0341186be12412c6a4362cc08710.jpg" alt="slide 2">
@@ -28,7 +35,7 @@
                                     <img src="./../../assets/824b877bf4c731e3fcc13a8881c3e982.jpg" alt="slide 3">
                                     <span><p>Onasdfasdfafasdfe</p></span>
                                 </div>
-                            </ion-slide>
+                            </ion-slide> -->
                         </ion-slides>
                     </div>
                 </div>
@@ -40,18 +47,18 @@
                     - Wait for the app to detect and tell you the objects in image.</p>
                 </div>
             </ion-row>
-            <ion-row align-items-center>
+            <ion-row class="align-items-center">
                 <div class="pic-buttons">
                     <h3>Choose an image:</h3>
                     <div class="buttons">
                         <ion-col> 
-                            <button class="ion-activatable" (click) = "pickImage()">
+                            <button class="ion-activatable" (click) = "photoService.pickImage()">
                                 Galley
                             <ion-ripple-effect></ion-ripple-effect>
                             </button>
                         </ion-col>
                         <ion-col> 
-                            <button class="ion-activatable" (click) = "takePictures()"> 
+                            <button class="ion-activatable" (click) = "photoService.takePictures()"> 
                                     Camera
                             <ion-ripple-effect></ion-ripple-effect>
                             </button>

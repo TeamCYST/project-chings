@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PhotoService } from './../services/photo.service';
+import { ObjectUnsubscribedError } from 'rxjs';
+
+import * as cocoSsd from '@tensorflow-models/coco-ssd';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +11,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  current: any = [] ;
+  another: any;
+  image: any;
+  model: any;
+  constructor(
+    public route: ActivatedRoute,
+    public photoService: PhotoService
+  ){
+
+    
   }
 
   ngOnInit() {
+    this.photoService.loadSaved();
+    this.current = this.photoService.photos;
+    this.another = this.current[0];
+    this.image = this.another.data;
+   
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  async predict() {
+    
+    //const img = document.getElementById('img');
+
+    // Load the model.
+    const model = await cocoSsd.load();
+    // Classify the image.
+    // const predictions = await model.detect(img);
+    
+    // console.log('Predictions: ');
+    // console.log(predictions);
+  }
+  
 }

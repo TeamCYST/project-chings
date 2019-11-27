@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PhotoService } from './../services/photo.service';
-import { ObjectUnsubscribedError } from 'rxjs';
 
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 

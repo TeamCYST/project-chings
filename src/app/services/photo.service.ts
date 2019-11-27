@@ -7,11 +7,11 @@ import { Router, NavigationExtras } from '@angular/router';
   providedIn: 'root'
 })
 
-class Photo{
- data:any;
+class Photo {
+  data: any;
 }
 export class PhotoService {
-  current: any="./../../assets/18353.jpg";
+  current: any = './../../assets/18353.jpg';
   public photos: Photo[] = [];
   constructor(
     private camera: Camera,
@@ -20,46 +20,46 @@ export class PhotoService {
     public router: Router
   ) { }
 
-  loadSaved(){
-    this.storage.get('photos').then((photos) =>{
+  loadSaved() {
+    this.storage.get('photos').then((photos) => {
       this.photos = photos || [];
     })
   }
 
-  go(){
-  
+  go() {
+
     this.router.navigateByUrl('list');
   }
 
-  cameraFnx(sourceType){
+  cameraFnx(sourceType) {
     const options: CameraOptions = {
       quality: 100,
       sourceType: sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
-     };
+    };
 
-     this.camera.getPicture(options).then((imageData)=>{
-       this.current = 'data:image/jpeg;base64,' + imageData;
-       this.photos.unshift({
-         data: this.current
-       });
-       this.storage.set('photos', this.photos);
+    this.camera.getPicture(options).then((imageData) => {
+      this.current = 'data:image/jpeg;base64,' + imageData;
+      this.photos.unshift({
+        data: this.current
+      });
+      this.storage.set('photos', this.photos);
 
-       this.go();
+      this.go();
 
-     }, (err) => {
-       console.log("Camera Issues: "+err);
-     });
+    }, (err) => {
+      console.log('Camera Issues: ' + err);
+    });
   }
 
-  takePictures(){
+  takePictures() {
     this.cameraFnx(this.camera.PictureSourceType.CAMERA);
-   
+
   }
 
-  pickImage(){
+  pickImage() {
     this.cameraFnx(this.camera.PictureSourceType.PHOTOLIBRARY);
   }
 }

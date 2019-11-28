@@ -12,7 +12,7 @@ jobs:
     - name: NPM or Yarn install with caching
       uses: bahmutov/npm-install@v1.1.0
     - name: Setup ionic environment
-      run: npm i ionic cordova
+      run: npm i ionic cordova -g
     - name:  Build ionic
       run: ionic cordova build android
 

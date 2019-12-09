@@ -14,6 +14,8 @@ import { File } from '@ionic-native/file/ngx';
 import { PhotoService } from './services/photo.service';
 import { IonicStorageModule } from '@ionic/storage';
 
+import * as tf from '@tensorflow/tfjs';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,7 +31,7 @@ BrowserModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     File,
-    PhotoService
+    PhotoService,
   ],
   bootstrap: [AppComponent]
 })

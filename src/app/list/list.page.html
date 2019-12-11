@@ -1,3 +1,11 @@
 <ion-content>
-  <img id='image' #image src="./../../assets/image1.jpg" alt="t">
+  <img [src]="_image" id='image' #image  alt="t">
+  <button (click) = "predict()" >
+    Predict 
+  </button>
+  <ul>
+    <li *ngFor="let predict of predicted" >
+      {{predict.class}}
+    </li>
+  </ul>
 </ion-content>

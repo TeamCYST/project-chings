@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
+import * as cocoSsd from '@tensorflow-models/coco-ssd';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,16 +13,28 @@ class Photo{
 }
 export class PhotoService {
   public photos: Photo[] = [];
+
+  async loadModel(){
+    const model = await cocoSsd.load();
+    return model;
+  }
+ 
   constructor(
     private camera: Camera,
     private file: File,
-    private storage: Storage
+    private storage: Storage,
+    private router: Router
   ) { }
 
   loadSaved(){
     this.storage.get('photos').then((photos) =>{
       this.photos = photos || [];
     })
+  }
+
+  go(){
+    this.router.navigateByUrl('list');
+    console.log("redirect");
   }
 
 
@@ -38,16 +52,19 @@ export class PhotoService {
          data: 'data:image/jpeg;base64,' + imageData
        });
        this.storage.set('photos', this.photos);
+       this.go();
      }, (err) => {
        console.log("Camera Issues: "+err);
      });
   }
 
   takePictures(){
-    this.cameraFnx(this.camera.PictureSourceType.CAMERA)
+    this.cameraFnx(this.camera.PictureSourceType.CAMERA);
   }
 
   pickImage(){
-    this.cameraFnx(this.camera.PictureSourceType.PHOTOLIBRARY)
+    this.cameraFnx(this.camera.PictureSourceType.PHOTOLIBRARY);
   }
 }
+
+//    cc330018/n12328

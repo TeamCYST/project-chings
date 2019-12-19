@@ -1,5 +1,11 @@
-ion-content{
-   .content{
+ion-toolbar {
+  --background: url("/../assets/background.png");
+  --color: white;
+  --border-color: transparent;
+}
+
+ion-content {
+  .content {
     width: 100%;
     height: 100%;
     background: url("/../assets/background.png");
@@ -7,87 +13,98 @@ ion-content{
     background-repeat: no-repeat;
   }
 
-  ion-grid{
-    ion-row{
-      .title{
+  ion-grid {
+    ion-row {
+      .title {
         color: #fff;
         margin-left: 20px;
-        h2{
+
+        h2 {
           font-size: 35px;
         }
       }
-      .cards-title{
+
+      .cards-title {
         color: #fff;
         margin-top: 15px;
         font-weight: 300;
         width: 100%;
-        h3{
+
+        h3 {
           margin-left: 35px;
         }
 
-        .cards{
+        .cards {
           width: 100%;
 
-          ion-slides{
-            ion-slide{
-              .image-slide{
+          ion-slides {
+            ion-slide {
+              .image-slide {
                 width: 90%;
-                height: 270px;               
-                
-                img{
+                height: 270px;
+
+                img {
                   height: 80%;
                   width: 100%;
                   object-fit: cover;
                   box-shadow: 0 8px 26px 0 rgba(0, 0, 0, 0.5);
                   border-radius: 20px;
                 }
-                span{
+
+                span {
                   font-size: 1.3em;
                   width: 100px;
                   height: 25px;
                   position: absolute;
                   left: 210px;
                   top: 160px;
-                  p{
+
+                  p {
                     padding: 10;
                     margin-top: -1px;
                     text-align: right;
                   }
+
                   overflow: hidden;
                 }
               }
             }
           }
-         
+
         }
       }
 
-      .instructions{
+      .instructions {
         margin-top: -20px;
         padding-left: 15px;
         color: #352643;
-        h3{
+
+        h3 {
           font-size: 18px;
         }
-        p{
+
+        p {
           font-size: 15px;
         }
       }
 
-      .pic-buttons{
+      .pic-buttons {
         width: 100%;
-        h3{
+
+        h3 {
           text-align: center;
           font-size: 20px;
           color: #352643;
           margin-top: 30px;
         }
-        .buttons{
-         //margin: 0 20px;
+
+        .buttons {
+          //margin: 0 20px;
           width: 100%;
           text-align: center;
-          ion-col{
-            button{
+
+          ion-col {
+            button {
               margin: 0px 20px;
               color: #fff;
               background-color: #E03F5C;
@@ -99,10 +116,9 @@ ion-content{
             }
           }
         }
-        
+
 
       }
     }
   }
 }
-

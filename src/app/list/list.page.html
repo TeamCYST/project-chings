@@ -1,21 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <div class="content">
-    <button class="back" (click)="goBack()" >Back</button>
+    <!-- <button class="back" (click)="goBack()" >Back</button> -->
     <div class="container">
-      <img [src]="_image" id='image' #image  alt="t">
-  
-      <button (click) = "predict()" >
-        Predict 
+      <img [src]="_image" id='image' #image alt="t">
+
+      <button (click)="predict()">
+        Predict
       </button>
       <div *ngIf="predictions" class="prediction-title">
         Objects Detected
       </div>
       <ul>
-        <li *ngFor="let predict of predicted" >
+        <li *ngFor="let predict of predicted">
           {{predict.class}}
         </li>
       </ul>
     </div>
   </div>
-  
+
 </ion-content>

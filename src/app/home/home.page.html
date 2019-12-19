@@ -1,27 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Object Detection</ion-title>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
     <div class="content">
         <ion-grid>
-            <ion-row>
+            <!-- <ion-row>
                 <div class="title">
                     <h2>Object Detection</h2>
                 </div>
-            </ion-row>
+            </ion-row> -->
             <ion-row>
                 <div class="cards-title">
                     <h3>Samples</h3>
                     <div class="cards">
                         <ion-slides>
                             <ion-slide *ngFor="let photo of photoService.photos">
-                                    <div class="image-slide">
-                                        <img [src]="photo.data" alt="slide 1">
-                                        <span><p>One</p></span>
-                                    </div>
+                                <div class="image-slide">
+                                    <img [src]="photo.data" alt="slide 1">
+                                    <span>
+                                        <p>One</p>
+                                    </span>
+                                </div>
                             </ion-slide>
                             <ion-slide>
-                                    <div class="image-slide">
-                                        <img src="./../../assets/532d0341186be12412c6a4362cc08710.jpg" alt="slide 1">
-                                        <span><p>One</p></span>
-                                    </div>
+                                <div class="image-slide">
+                                    <img src="./../../assets/532d0341186be12412c6a4362cc08710.jpg" alt="slide 1">
+                                    <span>
+                                        <p>One</p>
+                                    </span>
+                                </div>
                             </ion-slide>
                             <!--
                             <ion-slide>
@@ -43,24 +52,24 @@
             <ion-row>
                 <div class="instructions">
                     <h3>Instructions</h3>
-                    <p>- Either choose an image from your gallery or take a new one with your camera. <br/>
-                    - Wait for the app to detect and tell you the objects in image.</p>
+                    <p>- Either choose an image from your gallery or take a new one with your camera. <br />
+                        - Wait for the app to detect and tell you the objects in image.</p>
                 </div>
             </ion-row>
             <ion-row class="align-items-center">
                 <div class="pic-buttons">
                     <h3>Choose an image:</h3>
                     <div class="buttons">
-                        <ion-col> 
-                            <button class="ion-activatable" (click) = "photoService.pickImage()">
+                        <ion-col>
+                            <button class="ion-activatable" (click)="photoService.pickImage()">
                                 Galley
-                            <ion-ripple-effect></ion-ripple-effect>
+                                <ion-ripple-effect></ion-ripple-effect>
                             </button>
                         </ion-col>
-                        <ion-col> 
-                            <button class="ion-activatable" (click) = "photoService.takePictures()"> 
-                                    Camera
-                            <ion-ripple-effect></ion-ripple-effect>
+                        <ion-col>
+                            <button class="ion-activatable" (click)="photoService.takePictures()">
+                                Camera
+                                <ion-ripple-effect></ion-ripple-effect>
                             </button>
                         </ion-col>
                     </div>

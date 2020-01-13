@@ -3,7 +3,7 @@ import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import { PhotoService } from './../services/photo.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { ThrowStmt } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-list',
@@ -17,7 +17,7 @@ export class ListPage implements AfterViewInit {
   @ViewChild("canvas", {static: true}) canvas: ElementRef<HTMLCanvasElement>;
  
   predicted:any = [];
-
+  predictions = false;
   photo_array:any = [];
   current:any;
   _image:string = "./../../assets/image1.jpg";
@@ -46,9 +46,11 @@ export class ListPage implements AfterViewInit {
     // this._image = this.current.data;
     
   }
+  goBack(){
+    this.router.navigateByUrl('home');
+  }
 
   async predict(){
-      
     const img = this.imgid.nativeElement;
     const loading = await this.loadingCtrl.create({
       message: 'Please wait...',
@@ -60,6 +62,7 @@ export class ListPage implements AfterViewInit {
     await loading.dismiss();
     const predictions = await model.detect(img);
     console.log(predictions);
+    this.predictions = true;
     this.predicted = predictions;
     /* this.predicted.forEach(element => {
       this.draw(Math.round(element.bbox[0]), Math.round(element.bbox[1]), Math.round(element.bbox[2]), Math.round(element.bbox[3]), 'red', element.class);
@@ -68,9 +71,7 @@ export class ListPage implements AfterViewInit {
     
   }
  
-  goBack(){
-    this.router.navigateByUrl('home');
-  }
+
 
   draw(x:number, y:number, width:number, height:number, color:string, className:string){
     this.ctx.strokeStyle = color;

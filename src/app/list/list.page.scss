@@ -1,1 +1,61 @@
 
+ion-content{
+    .all{
+        background: url("/../assets/background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .GoBack{
+        width: 100px;
+        color: #E03F5C;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: 12px 0px;
+        font-size: 12px;
+        box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0.5);
+        margin: 10px;
+        margin-bottom: 50px;
+
+
+    }
+
+    .content{
+        text-align: center;
+        img{
+            display: none;
+            height: 100%;
+            object-fit: contain;
+            //box-shadow: 0 8px 26px 0 rgba(0, 0, 0, 0.5);
+            //border-radius: 20px;
+            height: 100%;
+          }
+            .canvas-container{
+                width: 100%;
+                height: 250px;
+                margin: 0 auto;
+
+              canvas{
+                  width: 90%;
+                  height: 270px;
+                    //background: black;
+                    //opacity: .3;
+                    //position: relative;
+                    //top:-272px;
+                    //margin-bottom: -250px;
+              }
+          }
+          button{
+            margin: 50px 0;
+            color: #fff;
+            background-color: #E03F5C;
+            border-radius: 2px;
+            padding: 16px 0px;
+            width: 130px;
+            font-size: 18px;
+            box-shadow: 0 4px 8px 0 rgba(224, 63, 92, 0.5);
+          }
+          ul{
+              list-style: none;
+          }
+    }
+}

@@ -13,12 +13,14 @@
                         <ion-slides>
                             <ion-slide *ngFor="let photo of photoService.photos">
                                     <div class="image-slide">
+                                            <div class="overlay"></div>
                                         <img [src]="photo.data" alt="slide 1">
                                         <span><p>{{photo.result}}</p></span>
                                     </div>
                             </ion-slide>
                             <ion-slide>
                                     <div class="image-slide">
+                                        <div class="overlay"></div>
                                         <img src="./../../assets/532d0341186be12412c6a4362cc08710.jpg" alt="slide 1">
                                         <span><p>One</p></span>
                                     </div>

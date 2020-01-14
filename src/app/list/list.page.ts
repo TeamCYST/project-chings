@@ -74,10 +74,12 @@ export class ListPage implements AfterViewInit {
     }); */
 
     this.predicted.forEach(element => {
-      this.result = this.result + element.class + ",";
+      this.result = this.result + element.class + ", ";
     });
     console.log(this.result);
-    
+    this.result = this.result.slice(0, -2);
+    console.log(this.result);
+
     this.photoService.setResult(this.result);
     
   }

@@ -23,6 +23,7 @@ export class ListPage implements AfterViewInit {
   _image:string = "./../../assets/image1.jpg";
   w_diff:number;
   h_diff:number;
+  result:string = "";
 
   private ctx: CanvasRenderingContext2D;
   private loading;
@@ -35,15 +36,18 @@ export class ListPage implements AfterViewInit {
   
 
   ngAfterViewInit() {
+    
+
     const img = this.imgid.nativeElement;
     const canvas = this.canvas.nativeElement;
     this.ctx = this.canvas.nativeElement.getContext('2d');
      
     setTimeout(e => this.ctx.drawImage(img, 0, 0, img.width, img.height,   0, 0, canvas.width, canvas.height), 500);
-    // this.photoService.loadSaved();
-    // this.photo_array=this.photoService.photos;
-    // this.current = this.photo_array[0];
-    // this._image = this.current.data;
+    this.photoService.loadSaved();
+    this.photo_array=this.photoService.photos;
+    this.current = this.photo_array[0];
+    this._image = this.current.data;
+    
     
   }
   goBack(){
@@ -68,6 +72,13 @@ export class ListPage implements AfterViewInit {
       this.draw(Math.round(element.bbox[0]), Math.round(element.bbox[1]), Math.round(element.bbox[2]), Math.round(element.bbox[3]), 'red', element.class);
       //console.log(element.bbox[0])
     }); */
+
+    this.predicted.forEach(element => {
+      this.result = this.result + element.class + ",";
+    });
+    console.log(this.result);
+    
+    this.photoService.setResult(this.result);
     
   }
  

@@ -14,7 +14,7 @@
                             <ion-slide *ngFor="let photo of photoService.photos">
                                     <div class="image-slide">
                                         <img [src]="photo.data" alt="slide 1">
-                                        <span><p>One</p></span>
+                                        <span><p>{{photo.result}}</p></span>
                                     </div>
                             </ion-slide>
                             <ion-slide>

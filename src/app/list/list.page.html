@@ -6,17 +6,19 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="content">
-    <!-- <button class="back" (click)="goBack()" >Back</button> -->
-    <div class="container">
-      <img [src]="_image" id='image' #image alt="t">
-
-      <button (click)="predict()">
-        Predict
-      </button>
-      <div *ngIf="predictions" class="prediction-title">
-        Objects Detected
+  <div class="all">
+    <button class="GoBack" (click)="goBack()" >
+        Go Back
+    </button>
+  
+    <div class="content">
+      <img [src]="_image" id='image' #image  alt="t">
+      <div class="canvas-container">
+        <canvas #canvas ></canvas>
       </div>
+      <button (click) = "predict()" >
+        Predict 
+      </button>
       <ul>
         <li *ngFor="let predict of predicted">
           {{predict.class}}
@@ -24,5 +26,4 @@
       </ul>
     </div>
   </div>
-
 </ion-content>

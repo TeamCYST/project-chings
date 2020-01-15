@@ -10,6 +10,7 @@ import * as cocoSsd from '@tensorflow-models/coco-ssd';
 
 class Photo{
  data:any;
+ result:any;
 }
 export class PhotoService {
   public photos: Photo[] = [];
@@ -31,6 +32,11 @@ export class PhotoService {
       this.photos = photos || [];
     })
   }
+  
+  setResult(theResult){
+    this.photos[0]['result'] = theResult;
+   console.log('setResult: '+this.photos[0]["result"]); 
+  }
 
   go(){
     this.router.navigateByUrl('list');
@@ -49,7 +55,8 @@ export class PhotoService {
 
      this.camera.getPicture(options).then((imageData)=>{
        this.photos.unshift({
-         data: 'data:image/jpeg;base64,' + imageData
+         data: 'data:image/jpeg;base64,' + imageData,
+         result: ''
        });
        this.storage.set('photos', this.photos);
        this.go();

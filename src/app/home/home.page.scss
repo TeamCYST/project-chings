@@ -1,11 +1,8 @@
-ion-toolbar {
-  --background: url("/../assets/background.png");
-  --color: white;
-  --border-color: transparent;
-}
-
-ion-content {
-  .content {
+ion-content{
+  background: url("/../assets/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+   .content{
     width: 100%;
     height: 100%;
     background: url("/../assets/background.png");
@@ -41,27 +38,31 @@ ion-content {
             ion-slide {
               .image-slide {
                 width: 90%;
-                height: 270px;
-
-                img {
+                height: 270px;               
+                .overlay{
+                  position: absolute;
+                  margin: 0 auto;
+                  width: 90%;
+                  height: 80%;
+                  background: linear-gradient(to bottom, rgba(255, 4, 4, 0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0, 0, 0, 0.9) );
+                  border-radius: 20px;
+                }
+                img{
                   height: 80%;
                   width: 100%;
                   object-fit: cover;
                   box-shadow: 0 8px 26px 0 rgba(0, 0, 0, 0.5);
                   border-radius: 20px;
                 }
-
-                span {
-                  font-size: 1.3em;
-                  width: 100px;
-                  height: 25px;
+                span{
+                  font-size: 1.0em;
+                  width: 300px;
+                  height: 45px;
                   position: absolute;
-                  left: 210px;
+                  right: 25px;
                   top: 160px;
-
-                  p {
-                    padding: 10;
-                    margin-top: -1px;
+                  p{
+                    margin-top: 20px;
                     text-align: right;
                   }
 

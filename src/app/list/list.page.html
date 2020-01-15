@@ -7,14 +7,9 @@
 </ion-header>
 <ion-content>
   <div class="all">
-    <button class="GoBack" (click)="goBack()" >
-        Go Back
-    </button>
-  
     <div class="content">
-      <img [src]="_image" id='image' #image  alt="t">
-      <div class="canvas-container">
-        <canvas #canvas ></canvas>
+      <div class="image_container">
+        <img [src]="_image" id='image' #image  alt="t">
       </div>
       <button (click) = "predict()" >
         Predict 

@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>gallery</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Gallery</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-grid margin>
+  <ion-row>
+   
+    <ion-col size="12" *ngFor="let photo of photoService.ProcessedPhotos">
+      <ion-card no-margin button="true" (click)="showResult(photo.result)" >
+        <img [src]="photo.data" />
+      </ion-card>
+    </ion-col>
+    <ion-col size="12">
+      <ion-card no-margin button="true">
+        <img  src="./../../assets/532d0341186be12412c6a4362cc08710.jpg"/>
+      </ion-card>
+    </ion-col>  
+  
+    
+  </ion-row>
+</ion-grid>
 </ion-content>

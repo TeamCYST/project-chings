@@ -4,22 +4,25 @@ import { File } from '@ionic-native/file/ngx';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
+
 @Injectable({
   providedIn: 'root'
 })
 
-class Photo{
- data:any;
- result:any;
+export interface Photo {
+ data: any;
+ result: any;
+ processed: number;
 }
 export class PhotoService {
   public photos: Photo[] = [];
+  public ProcessedPhotos: Photo[] = [];
 
-  async loadModel(){
+  async loadModel() {
     const model = await cocoSsd.load();
     return model;
   }
- 
+
   constructor(
     private camera: Camera,
     private file: File,
@@ -27,51 +30,80 @@ export class PhotoService {
     private router: Router
   ) { }
 
-  loadSaved(){
-    this.storage.get('photos').then((photos) =>{
+  loadSaved() {
+    this.storage.get('photos').then((photos) => {
       this.photos = photos || [];
-    })
+    });
   }
-  
-  setResult(theResult){
+
+  loadProcessed() {
+    this.storage.get('photos').then((photos) => {
+      this.photos = photos || [];
+    });
+    let i = 0;
+    this.photos.forEach(element => {
+      if (element.processed === 1) {
+          this.ProcessedPhotos[i] = element;
+          //console.log(element);
+          i++;
+      }
+    });
+
+  }
+
+
+
+  setResult(theResult) {
     this.photos[0]['result'] = theResult;
-   console.log('setResult: '+this.photos[0]["result"]); 
+    this.storage.set('photo', this.photos);
+
+    console.log('setResult: ' + this.photos[0].result);
   }
 
-  go(){
+  setProcessed() {
+    this.photos[0]['processed'] = 1;
+    this.storage.set('photo', this.photos);
+
+   // console.log('setResult: '+this.photos[0]["result"]);
+  }
+
+  go() {
     this.router.navigateByUrl('list');
-    console.log("redirect");
+    console.log('redirect');
   }
 
 
-  cameraFnx(sourceType){
+  cameraFnx(sourceType) {
     const options: CameraOptions = {
       quality: 100,
-      sourceType: sourceType,
+      sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
      };
 
-     this.camera.getPicture(options).then((imageData)=>{
+    this.camera.getPicture(options).then((imageData) => {
        this.photos.unshift({
          data: 'data:image/jpeg;base64,' + imageData,
-         result: ''
+         result: '',
+         processed: 0
        });
        this.storage.set('photos', this.photos);
        this.go();
      }, (err) => {
-       console.log("Camera Issues: "+err);
+       console.log('Camera Issues: ' + err);
      });
   }
 
-  takePictures(){
+  takePictures() {
     this.cameraFnx(this.camera.PictureSourceType.CAMERA);
   }
 
-  pickImage(){
+  pickImage() {
     this.cameraFnx(this.camera.PictureSourceType.PHOTOLIBRARY);
   }
+
+ 
 }
 
 //    cc330018/n12328

@@ -18,12 +18,22 @@ export class GalleryPage implements OnInit {
   }
 
   showResult(result: string) {
-  
+      let resultarray = result.split(', ');
+      
+      let messageres='';
+      let i=0;
+      while(i < resultarray.length){
+        messageres=messageres+"<h3>"+resultarray[i]+"</h3>";
+        //messageres=messageres+'<h3 style="text-transform:capitalize;">'+resultarray[i]+"</h3>";
+        i++;
+      }
+      ;
+
      this.alertController.create(
       {
-        header: 'Object(s) Detected',
-        message: result,
-        buttons: ['Dismiss']
+        header: 'Detection Result(s)',
+        message: messageres,
+        buttons: ['Dismiss'] 
       }
     ).then(alertC => alertC.present()); 
 

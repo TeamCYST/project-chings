@@ -11,12 +11,13 @@
     <ion-grid margin>
   <ion-row>
    
-    <ion-col size="12" *ngFor="let photo of photoService.ProcessedPhotos">
-      <ion-card no-margin button="true" (click)="showResult(photo.result)" >
-        <img [src]="photo.data" />
+    <ion-col  size="6"   *ngFor="let photo of photoService.ProcessedPhotos">
+      <ion-card  no-margin button="true" (click)="showResult(photo.result)" >
+        
+          <img  object-fit="cover" height='200px' width='120px' [src]="photo.data" />
+        
       </ion-card>
     </ion-col> 
-  
     
   </ion-row>
 </ion-grid>

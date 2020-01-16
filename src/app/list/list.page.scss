@@ -1,8 +1,13 @@
 ion-toolbar {
-  --background: #E34554;
+  --background: #E8494F;
   --color: white;
   --ion-color-base: transparent !important;
   }
+
+.header-md:after{
+  background-image: none;
+}
+
 
 ion-content{
     .all{

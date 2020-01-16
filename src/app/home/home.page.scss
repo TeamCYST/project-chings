@@ -1,3 +1,9 @@
+ion-toolbar {
+  --background: #E34554;
+  --color: white;
+  --ion-color-base: transparent !important;
+  }
+
 ion-content{
   background: url("/../assets/background.png");
   background-size: cover;

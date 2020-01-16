@@ -18,10 +18,10 @@ export class GalleryPage implements OnInit {
   }
 
   showResult(result: string) {
-  console.log("alertdialog touched");
+  
      this.alertController.create(
       {
-        header: 'Objects Detected',
+        header: 'Object(s) Detected',
         message: result,
         buttons: ['Dismiss']
       }

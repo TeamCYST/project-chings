@@ -57,6 +57,7 @@ export class ListPage implements AfterViewInit {
 
   async predict(){
     const img = this.imgid.nativeElement;
+    console.log(img);
     const loading = await this.loadingCtrl.create({
       message: 'Please wait...',
       duration: 20000
@@ -83,6 +84,13 @@ export class ListPage implements AfterViewInit {
 
     this.photoService.setResult(this.result);
     this.photoService.setProcessed();
+  
+    this.photoService.ProcessedPhotos.unshift({
+      data: this._image,
+      result: this.result,
+
+    });
+    this.storage.set('processedphotos', this.photoService.ProcessedPhotos);
 
 
     

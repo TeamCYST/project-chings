@@ -5,14 +5,12 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 
-@Injectable({
-  providedIn: 'root'
-})
+
 
 export interface Photo {
  data: any;
  result: any;
- processed: number;
+ 
 }
 export class PhotoService {
   public photos: Photo[] = [];
@@ -37,17 +35,17 @@ export class PhotoService {
   }
 
   loadProcessed() {
-    this.storage.get('photos').then((photos) => {
-      this.photos = photos || [];
+    this.storage.get('processedphotos').then((ProcessedPhotos) => {
+      this.ProcessedPhotos = ProcessedPhotos || [];
     });
-    let i = 0;
-    this.photos.forEach(element => {
-      if (element.processed === 1) {
-          this.ProcessedPhotos[i] = element;
-          //console.log(element);
-          i++;
-      }
-    });
+    // let i = 0;
+    // this.photos.forEach(element => {
+    //   if (element.processed === 1) {
+    //       this.ProcessedPhotos[i] = element;
+    //       //console.log(element);
+    //       i++;
+    //   }
+    // });
 
   }
 
@@ -55,14 +53,14 @@ export class PhotoService {
 
   setResult(theResult) {
     this.photos[0]['result'] = theResult;
-    this.storage.set('photo', this.photos);
+    this.storage.set('processedphotos', this.ProcessedPhotos);
 
     console.log('setResult: ' + this.photos[0].result);
   }
 
   setProcessed() {
     this.photos[0]['processed'] = 1;
-    this.storage.set('photo', this.photos);
+    this.storage.set('processedphotos', this.ProcessedPhotos);
 
    // console.log('setResult: '+this.photos[0]["result"]);
   }
@@ -86,7 +84,7 @@ export class PhotoService {
        this.photos.unshift({
          data: 'data:image/jpeg;base64,' + imageData,
          result: '',
-         processed: 0
+        
        });
        this.storage.set('photos', this.photos);
        this.go();

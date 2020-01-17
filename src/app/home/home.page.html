@@ -1,9 +1,9 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Object Detection</ion-title>
-    </ion-toolbar>
-</ion-header>
-<ion-content>
+<ion-content fullscreen>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Object Detection</ion-title>
+        </ion-toolbar>
+    </ion-header>
     <div class="content">
         <ion-grid>
             <!-- <ion-row>
@@ -16,20 +16,20 @@
                     <h3>Samples</h3>
                     <div class="cards">
                         <ion-slides>
-                            <ion-slide *ngFor="let photo of photoService.photos">
-                                    <div class="image-slide">
-                                            <div class="overlay"></div>
-                                        <img [src]="photo.data" alt="slide 1">
-                                        <span><p>{{photo.result}}</p></span>
+                            <ion-slide *ngFor="let image of images">
+                                    <div class="image-slide" (click) = photoService.testSamples(image)>
+                                        <div class="overlay"></div>
+                                        <img [src]="image" alt="slide 1">
+                                        <!-- <span><p>{{photo.result}}</p></span> -->
                                     </div>
                             </ion-slide>
-                            <ion-slide>
+                            <!-- <ion-slide>
                                     <div class="image-slide">
                                         <div class="overlay"></div>
                                         <img src="./../../assets/532d0341186be12412c6a4362cc08710.jpg" alt="slide 1">
                                         <span><p>One</p></span>
                                     </div>
-                            </ion-slide>
+                            </ion-slide> -->
                             <!--
                             <ion-slide>
                                 <div class="image-slide">

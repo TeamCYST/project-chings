@@ -14,15 +14,14 @@ import { LoadingController } from '@ionic/angular';
 export class ListPage implements AfterViewInit {
   
   @ViewChild("image", {static: true}) imgid: ElementRef<HTMLImageElement>;
-  @ViewChild("canvas", {static: true}) canvas: ElementRef<HTMLCanvasElement>;
+
  
   predicted:any = [];
   predictions = false;
   photo_array:any = [];
   current:any;
   _image:string = "./../../assets/image1.jpg";
-  w_diff:number;
-  h_diff:number;
+
   result:string = "";
 
   private ctx: CanvasRenderingContext2D;
@@ -37,22 +36,10 @@ export class ListPage implements AfterViewInit {
   
 
   ngAfterViewInit() {
-    
-
-    const img = this.imgid.nativeElement;
-    const canvas = this.canvas.nativeElement;
-    this.ctx = this.canvas.nativeElement.getContext('2d');
-     
-    setTimeout(e => this.ctx.drawImage(img, 0, 0, img.width, img.height,   0, 0, canvas.width, canvas.height), 500);
     this.photoService.loadSaved();
     this.photo_array=this.photoService.photos;
     this.current = this.photo_array[0];
     this._image = this.current.data;
-    
-    
-  }
-  goBack(){
-    this.router.navigateByUrl('home');
   }
 
   async predict(){
@@ -70,10 +57,7 @@ export class ListPage implements AfterViewInit {
     console.log(predictions);
     this.predictions = true;
     this.predicted = predictions;
-    /* this.predicted.forEach(element => {
-      this.draw(Math.round(element.bbox[0]), Math.round(element.bbox[1]), Math.round(element.bbox[2]), Math.round(element.bbox[3]), 'red', element.class);
-      //console.log(element.bbox[0])
-    }); */
+
 
     this.predicted.forEach(element => {
       this.result = this.result + element.class + ", ";
@@ -96,13 +80,4 @@ export class ListPage implements AfterViewInit {
     
   }
  
-
-
-  draw(x:number, y:number, width:number, height:number, color:string, className:string){
-    this.ctx.strokeStyle = color;
-    this.ctx.lineWidth = 2;
-    this.ctx.fillText(className, x, y);
-    this.ctx.scale(.75, .85);
-    this.ctx.strokeRect(x, y, width, height);
-  }
 }

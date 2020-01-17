@@ -5,8 +5,6 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 
-
-
 export interface Photo {
  data: any;
  result: any;
@@ -33,41 +31,20 @@ export class PhotoService {
       this.photos = photos || [];
     });
   }
+export interface Photo {
+ data: any;
+ result: any;
+ 
+}
+export class PhotoService {
+  public photos: Photo[] = [];
+  public ProcessedPhotos: Photo[] = [];
 
-  loadProcessed() {
-    this.storage.get('processedphotos').then((ProcessedPhotos) => {
-      this.ProcessedPhotos = ProcessedPhotos || [];
-    });
-    // let i = 0;
-    // this.photos.forEach(element => {
-    //   if (element.processed === 1) {
-    //       this.ProcessedPhotos[i] = element;
-    //       //console.log(element);
-    //       i++;
-    //   }
-    // });
-
-  }
-
-
-
-  setResult(theResult) {
-    this.photos[0]['result'] = theResult;
-    this.storage.set('processedphotos', this.ProcessedPhotos);
-
-    console.log('setResult: ' + this.photos[0].result);
-  }
-
-  setProcessed() {
-    this.photos[0]['processed'] = 1;
-    this.storage.set('processedphotos', this.ProcessedPhotos);
-
-   // console.log('setResult: '+this.photos[0]["result"]);
+  async loadModel() {
   }
 
   go() {
     this.router.navigateByUrl('list');
-    console.log('redirect');
   }
 
 
@@ -101,7 +78,6 @@ export class PhotoService {
     this.cameraFnx(this.camera.PictureSourceType.PHOTOLIBRARY);
   }
 
- 
 }
 
 //    cc330018/n12328

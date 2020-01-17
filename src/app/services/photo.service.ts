@@ -4,17 +4,17 @@ import { File } from '@ionic-native/file/ngx';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
-@Injectable({
-  providedIn: 'root'
-})
 
-class Photo{
+
+export interface Photo{
  data:any;
  result:any;
 }
 export class PhotoService {
   public photos: Photo[] = [];
-
+  public predictedPhotos: Photo[] = [];
+  i: number;
+  y: number;
   async loadModel(){
     const model = await cocoSsd.load();
     return model;
@@ -32,15 +32,32 @@ export class PhotoService {
       this.photos = photos || [];
     })
   }
+
+  predictedSaved(){
+    this.storage.get('photos').then((photos) =>{
+      this.photos = photos || [];
+    });
+    this.i=0;
+    this.y=0;
+      for (this.i=0;this.i<this.photos.length;this.i++){
+        if (this.photos[this.i]['result'] !== ''){
+          this.predictedPhotos[this.y] = this.photos[this.i];
+          console.log(this.predictedPhotos[this.y]);
+          this.y++;
+        }
+        this.i++;
+        
+      }
+    
+  }
   
   setResult(theResult){
     this.photos[0]['result'] = theResult;
-   console.log('setResult: '+this.photos[0]["result"]); 
+    //console.log('setResult: '+this.photos[0]["result"]); 
   }
 
   go(){
     this.router.navigateByUrl('list');
-    console.log("redirect");
   }
 
 
@@ -71,6 +88,15 @@ export class PhotoService {
 
   pickImage(){
     this.cameraFnx(this.camera.PictureSourceType.PHOTOLIBRARY);
+  }
+
+  testSamples(image){
+    this.photos.unshift({
+      data: image,
+      result: ''
+    });
+    this.storage.set('photos', this.photos);
+    this.go();
   }
 }
 

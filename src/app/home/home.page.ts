@@ -9,10 +9,12 @@ import { PhotoService } from './../services/photo.service';
 })
 export class HomePage {
 
+  images: any = ["./../../assets/image1.jpg", "./../../assets/image2.jpg", "./../../assets/image3.png"]
   ngOnInit(){
     this.photoService.loadSaved();
+    //this.photoService.predictedSaved();
   }
-
+  
   constructor(
     public photoService: PhotoService
     ) {}

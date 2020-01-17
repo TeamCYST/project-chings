@@ -58,7 +58,7 @@ export class ListPage implements AfterViewInit {
     this.predictions = true;
     this.predicted = predictions;
 
-
+    this.result='';
     this.predicted.forEach(element => {
       this.result = this.result + element.class + ", ";
     });
@@ -66,8 +66,7 @@ export class ListPage implements AfterViewInit {
     this.result = this.result.slice(0, -2);
     console.log(this.result);
 
-    this.photoService.setResult(this.result);
-    this.photoService.setProcessed();
+    
   
     this.photoService.ProcessedPhotos.unshift({
       data: this._image,

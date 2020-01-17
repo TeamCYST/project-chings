@@ -31,17 +31,11 @@ export class PhotoService {
       this.photos = photos || [];
     });
   }
-export interface Photo {
- data: any;
- result: any;
- 
-}
-export class PhotoService {
-  public photos: Photo[] = [];
-  public ProcessedPhotos: Photo[] = [];
 
-  async loadModel() {
-  }
+  loadProcessed() {
+    this.storage.get('processedphotos').then((photos) => {
+      this.ProcessedPhotos = photos || [];
+    });}
 
   go() {
     this.router.navigateByUrl('list');
@@ -76,8 +70,17 @@ export class PhotoService {
 
   pickImage() {
     this.cameraFnx(this.camera.PictureSourceType.PHOTOLIBRARY);
+
   }
 
+  testSamples(image){
+    this.photos.unshift({
+      data: image,
+      result: ''
+    });
+    this.storage.set('photos', this.photos);
+    this.go();
+  }
 }
 
 //    cc330018/n12328

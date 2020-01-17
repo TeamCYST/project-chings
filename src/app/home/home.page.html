@@ -2,15 +2,17 @@
     <ion-header>
         <ion-toolbar>
             <ion-title>Object Detection</ion-title>
+            <ion-buttons slot="end">
+         <ion-button  routerLink="/gallery">
+                                History   
+                            </ion-button>
+        </ion-buttons>
         </ion-toolbar>
+        
     </ion-header>
     <div class="content">
         <ion-grid>
-            <!-- <ion-row>
-                <div class="title">
-                    <h2>Object Detection</h2>
-                </div>
-            </ion-row> -->
+          
             <ion-row>
                 <div class="cards-title">
                     <h3>Samples</h3>
@@ -20,29 +22,10 @@
                                     <div class="image-slide" (click) = photoService.testSamples(image)>
                                         <div class="overlay"></div>
                                         <img [src]="image" alt="slide 1">
-                                        <!-- <span><p>{{photo.result}}</p></span> -->
+                                        
                                     </div>
                             </ion-slide>
-                            <!-- <ion-slide>
-                                    <div class="image-slide">
-                                        <div class="overlay"></div>
-                                        <img src="./../../assets/532d0341186be12412c6a4362cc08710.jpg" alt="slide 1">
-                                        <span><p>One</p></span>
-                                    </div>
-                            </ion-slide> -->
-                            <!--
-                            <ion-slide>
-                                <div class="image-slide">
-                                    <img src="./../../assets/532d0341186be12412c6a4362cc08710.jpg" alt="slide 2">
-                                    <span><p>asdfadsfa</p></span>
-                                </div>
-                            </ion-slide>
-                            <ion-slide>
-                                <div class="image-slide">
-                                    <img src="./../../assets/824b877bf4c731e3fcc13a8881c3e982.jpg" alt="slide 3">
-                                    <span><p>Onasdfasdfafasdfe</p></span>
-                                </div>
-                            </ion-slide> -->
+                            
                         </ion-slides>
                     </div>
                 </div>
@@ -60,7 +43,7 @@
                     <div class="buttons">
                         <ion-col>
                             <button class="ion-activatable" (click)="photoService.pickImage()">
-                                Galley
+                                Gallery
                                 <ion-ripple-effect></ion-ripple-effect>
                             </button>
                         </ion-col>
@@ -72,9 +55,7 @@
                         </ion-col>
                     </div>
                     <div text-center margin>
-                            <ion-button routerLink="/gallery">
-                                History   
-                            </ion-button>
+                           
                     </div>
                 </div>
             </ion-row>

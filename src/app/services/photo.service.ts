@@ -5,21 +5,20 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 
-
-export interface Photo{
- data:any;
- result:any;
+export interface Photo {
+ data: any;
+ result: any;
+ 
 }
 export class PhotoService {
   public photos: Photo[] = [];
-  public predictedPhotos: Photo[] = [];
-  i: number;
-  y: number;
-  async loadModel(){
+  public ProcessedPhotos: Photo[] = [];
+
+  async loadModel() {
     const model = await cocoSsd.load();
     return model;
   }
- 
+
   constructor(
     private camera: Camera,
     private file: File,
@@ -27,67 +26,51 @@ export class PhotoService {
     private router: Router
   ) { }
 
-  loadSaved(){
-    this.storage.get('photos').then((photos) =>{
-      this.photos = photos || [];
-    })
-  }
-
-  predictedSaved(){
-    this.storage.get('photos').then((photos) =>{
+  loadSaved() {
+    this.storage.get('photos').then((photos) => {
       this.photos = photos || [];
     });
-    this.i=0;
-    this.y=0;
-      for (this.i=0;this.i<this.photos.length;this.i++){
-        if (this.photos[this.i]['result'] !== ''){
-          this.predictedPhotos[this.y] = this.photos[this.i];
-          console.log(this.predictedPhotos[this.y]);
-          this.y++;
-        }
-        this.i++;
-        
-      }
-    
-  }
-  
-  setResult(theResult){
-    this.photos[0]['result'] = theResult;
-    //console.log('setResult: '+this.photos[0]["result"]); 
   }
 
-  go(){
+  loadProcessed() {
+    this.storage.get('processedphotos').then((photos) => {
+      this.ProcessedPhotos = photos || [];
+    });}
+
+  go() {
     this.router.navigateByUrl('list');
   }
 
 
-  cameraFnx(sourceType){
+  cameraFnx(sourceType) {
     const options: CameraOptions = {
       quality: 100,
-      sourceType: sourceType,
+      sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
      };
 
-     this.camera.getPicture(options).then((imageData)=>{
+    this.camera.getPicture(options).then((imageData) => {
        this.photos.unshift({
          data: 'data:image/jpeg;base64,' + imageData,
-         result: ''
+         result: '',
+        
        });
        this.storage.set('photos', this.photos);
        this.go();
      }, (err) => {
-       console.log("Camera Issues: "+err);
+       console.log('Camera Issues: ' + err);
      });
   }
 
-  takePictures(){
+  takePictures() {
     this.cameraFnx(this.camera.PictureSourceType.CAMERA);
   }
 
-  pickImage(){
+  pickImage() {
     this.cameraFnx(this.camera.PictureSourceType.PHOTOLIBRARY);
+
   }
 
   testSamples(image){

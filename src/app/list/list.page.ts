@@ -1,9 +1,9 @@
+import { Storage } from '@ionic/storage';
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import { PhotoService } from './../services/photo.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-
 
 @Component({
   selector: 'app-list',
@@ -30,7 +30,8 @@ export class ListPage implements AfterViewInit {
   constructor(
     public photoService:PhotoService,
     public router:Router,
-    private loadingCtrl:LoadingController
+    private loadingCtrl:LoadingController,
+    private storage:Storage
   ){}
   
 
@@ -43,6 +44,7 @@ export class ListPage implements AfterViewInit {
 
   async predict(){
     const img = this.imgid.nativeElement;
+    console.log(img);
     const loading = await this.loadingCtrl.create({
       message: 'Please wait...',
       duration: 20000
@@ -56,7 +58,7 @@ export class ListPage implements AfterViewInit {
     this.predictions = true;
     this.predicted = predictions;
 
-
+    this.result='';
     this.predicted.forEach(element => {
       this.result = this.result + element.class + ", ";
     });
@@ -64,7 +66,16 @@ export class ListPage implements AfterViewInit {
     this.result = this.result.slice(0, -2);
     console.log(this.result);
 
-    this.photoService.setResult(this.result);
+    
+  
+    this.photoService.ProcessedPhotos.unshift({
+      data: this._image,
+      result: this.result,
+
+    });
+    this.storage.set('processedphotos', this.photoService.ProcessedPhotos);
+
+
     
   }
  

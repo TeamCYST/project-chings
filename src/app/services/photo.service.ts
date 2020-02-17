@@ -11,7 +11,7 @@ export interface Photo{
  result:any;
 }
 export class PhotoService {
-  public photos: Photo[] = [];
+  public photos: Photo[] = []; 
   public predictedPhotos: Photo[] = [];
   i: number;
   y: number;

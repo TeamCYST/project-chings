@@ -19,6 +19,8 @@ export class ListPage implements AfterViewInit {
   predicted:any = [];
   predictions = false;
   photo_array:any = [];
+  uniqueCount:any=[];
+  storedresults:any=[];
   current:any;
   _image:string = "./../../assets/image1.jpg";
 
@@ -58,19 +60,32 @@ export class ListPage implements AfterViewInit {
     this.predictions = true;
     this.predicted = predictions;
 
-    this.result='';
+    let i=0;
     this.predicted.forEach(element => {
-      this.result = this.result + element.class + ", ";
+      this.uniqueCount[i] = element.class;
+      i++;
     });
-    console.log(this.result);
-    this.result = this.result.slice(0, -2);
-    console.log(this.result);
+     //console.log("UniqueCount: "+this.uniqueCount);
+    // this.result = this.result.slice(0, -2);
+    //  console.log("predicted :"+this.predict);
+    
+    var count = [];
+    this.uniqueCount.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+    
+    var keysarray=Object.keys(count);
+     i=0;
+    keysarray.forEach(element=>{
+      this.storedresults[i]=element +"(s) : "+count[element];
+        i++;
+        });
+
+    console.log(this.storedresults);
 
     
   
     this.photoService.ProcessedPhotos.unshift({
       data: this._image,
-      result: this.result,
+      result: this.storedresults,
 
     });
     this.storage.set('processedphotos', this.photoService.ProcessedPhotos);

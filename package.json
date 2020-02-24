@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "jarsign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore chings-cert.jks app-release-unsigned.apk upload"
+    "jarsign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore chings-cert.jks app.aab upload"
   },
   "private": true,
   "dependencies": {

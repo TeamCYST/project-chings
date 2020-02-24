@@ -10,6 +10,7 @@
 *.sublime-workspace
 .DS_Store
 *.apk
+*.aab
 Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/

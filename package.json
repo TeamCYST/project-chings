@@ -1,15 +1,16 @@
 {
-  "name": "Chings",
+  "name": "object_detection_app",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "CYST Company Limited",
+  "homepage": "https://teamcyst.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "jarsign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore chings-cert.jks app-release-unsigned.apk upload"
   },
   "private": true,
   "dependencies": {

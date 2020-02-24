@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { PhotoService } from './../services/photo.service';
 
@@ -7,16 +7,16 @@ import { PhotoService } from './../services/photo.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  images: any = ["./../../assets/image1.jpg", "./../../assets/image2.jpg", "./../../assets/image3.png"]
-  ngOnInit(){
+  images: any = ['./../../assets/image1.jpg', './../../assets/image2.jpg', './../../assets/image3.png'];
+
+  ngOnInit() {
     this.photoService.loadSaved();
-    //this.photoService.predictedSaved();
+    // this.photoService.predictedSaved();
   }
-  
   constructor(
     public photoService: PhotoService
-    ) {}
+  ) { }
 
 }

@@ -14,7 +14,6 @@ import { File } from '@ionic-native/file/ngx';
 import { PhotoService } from './services/photo.service';
 import { IonicStorageModule } from '@ionic/storage';
 
-import * as tf from '@tensorflow/tfjs';
 
 @NgModule({
   declarations: [AppComponent],

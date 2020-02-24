@@ -12,39 +12,39 @@ import { LoadingController } from '@ionic/angular';
 })
 
 export class ListPage implements AfterViewInit {
-  
-  @ViewChild("image", {static: true}) imgid: ElementRef<HTMLImageElement>;
 
- 
-  predicted:any = [];
+  @ViewChild('image', { static: true }) imgid: ElementRef<HTMLImageElement>;
+
+
+  predicted: any = [];
   predictions = false;
-  photo_array:any = [];
-  uniqueCount:any=[];
-  storedresults:any=[];
-  current:any;
-  _image:string = "./../../assets/image1.jpg";
+  photoArray: any = [];
+  uniqueCount: any = [];
+  storedresults: any = [];
+  current: any;
+  _image  = './../../assets/image1.jpg';
 
-  result:string = "";
+  result = '';
 
   private ctx: CanvasRenderingContext2D;
   private loading;
-  
+
   constructor(
-    public photoService:PhotoService,
-    public router:Router,
-    private loadingCtrl:LoadingController,
-    private storage:Storage
-  ){}
-  
+    public photoService: PhotoService,
+    public router: Router,
+    private loadingCtrl: LoadingController,
+    private storage: Storage
+  ) { }
+
 
   ngAfterViewInit() {
     this.photoService.loadSaved();
-    this.photo_array=this.photoService.photos;
-    this.current = this.photo_array[0];
+    this.photoArray = this.photoService.photos;
+    this.current = this.photoArray[0];
     this._image = this.current.data;
   }
 
-  async predict(){
+  async predict() {
     const img = this.imgid.nativeElement;
     console.log(img);
     const loading = await this.loadingCtrl.create({
@@ -53,36 +53,34 @@ export class ListPage implements AfterViewInit {
     });
     await loading.present();
     const model = await cocoSsd.load();
-    console.log("model loaded");
+    console.log('model loaded');
     await loading.dismiss();
     const predictions = await model.detect(img);
     console.log(predictions);
     this.predictions = true;
     this.predicted = predictions;
 
-    let i=0;
+    let i = 0;
     this.predicted.forEach(element => {
       this.uniqueCount[i] = element.class;
       i++;
     });
-     //console.log("UniqueCount: "+this.uniqueCount);
+    // console.log('UniqueCount: '+this.uniqueCount);
     // this.result = this.result.slice(0, -2);
-    //  console.log("predicted :"+this.predict);
-    
-    var count = [];
-    this.uniqueCount.forEach(function(i) { count[i] = (count[i]||0) + 1;});
-    
-    var keysarray=Object.keys(count);
-     i=0;
-    keysarray.forEach(element=>{
-      this.storedresults[i]=element +"(s) : "+count[element];
-        i++;
-        });
+    //  console.log('predicted :'+this.predict);
+
+    const count = [];
+    this.uniqueCount.forEach((e) => { count[e] = (count[e] || 0) + 1; });
+
+    const keysarray = Object.keys(count);
+    i = 0;
+    keysarray.forEach(element => {
+      this.storedresults[i] = element + '(s) : ' + count[element];
+      i++;
+    });
 
     console.log(this.storedresults);
 
-    
-  
     this.photoService.ProcessedPhotos.unshift({
       data: this._image,
       result: this.storedresults,
@@ -91,7 +89,7 @@ export class ListPage implements AfterViewInit {
     this.storage.set('processedphotos', this.photoService.ProcessedPhotos);
 
 
-    
+
   }
- 
+
 }

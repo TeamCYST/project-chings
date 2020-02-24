@@ -9,32 +9,31 @@ import { AlertController } from '@ionic/angular';
 })
 export class GalleryPage implements OnInit {
 
-  constructor(private photoService: PhotoService, private alertController: AlertController) { }
+  constructor(public photoService: PhotoService, private alertController: AlertController) { }
 
-  
+
 
   ngOnInit() {
     this.photoService.loadProcessed();
   }
 
   showResult(result: string) {
-     
-      let messages='';
-      let i=0;
-      while(i < result.length){
-        messages=messages+"<h3>"+result[i]+"</h3>";
-        //messages=messages+'<h3 style="text-transform:capitalize;">'+result[i]+"</h3>";
-        i++;
-      }
-      ;
 
-     this.alertController.create(
+    let messages = '';
+    let i = 0;
+    while (i < result.length) {
+      messages = messages + '<h3>' + result[i] + '</h3>';
+      // messages=messages+'<h3 style='text-transform:capitalize;'>'+result[i]+'</h3>';
+      i++;
+    }
+
+    this.alertController.create(
       {
         header: 'Detection Result(s)',
         message: messages,
-        buttons: ['Dismiss'] 
+        buttons: ['Dismiss']
       }
-    ).then(alertC => alertC.present()); 
+    ).then(alertC => alertC.present());
 
   }
 

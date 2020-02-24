@@ -2,52 +2,56 @@ ion-toolbar {
     --background: #E8494F;
     --color: white;
     --ion-color-base: transparent !important;
-    }
-  
-  .header-md:after{
-    background-image: none;
-  }
-  
-  
-  ion-content{
-      .all{
-          background: url("/../assets/background.png");
-          background-size: cover;
-          background-repeat: no-repeat;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
-  
-      .content{
-          text-align: center;
-          margin: 0 auto;
-          height: 300px;
-          width: 80%;
-          border-radius: 20px;
-          background: #fff;
-          box-shadow: 0 8px 26px 0 rgba(0, 0, 0, 0.5);
+}
 
-          .text{
-              text-align: center;
-   
-              .logo{
-                margin: 40px auto;
-                  img{
-                      width: 70px;
-                      height: 70px;
-                 
-                  }
-                  
-              }
-              .other{
-                  margin-top: 35px;
-                  font-size: 10px;
-                  p{
-                      font-size: 13px;
-                  }
-              }
-          }
-      }
-  }
+.header-md:after {
+    background-image: none;
+}
+
+
+ion-content {
+    .all {
+        background: url("/../assets/background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        text-align: center;
+        margin: 0px auto;
+        padding: 10px 0;
+        height: fit-content;
+        width: 80%;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 8px 26px 0 rgba(0, 0, 0, 0.5);
+
+        .text {
+            text-align: center;
+
+            .logo {
+                margin: 20px auto;
+
+                img {
+                    width: 70px;
+                    height: 70px;
+
+                }
+
+            }
+
+            .other {
+                margin-top: 35px;
+                font-size: 10px;
+
+                p {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}

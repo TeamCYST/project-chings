@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.cyst.cri.objectdetectionapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Object Detection App</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="com.cyst.cri.objectdetectionapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>CRI Object Detection App</name>
+    <description>An awesome CYST CRI App.</description>
+    <author email="business@teamcyst.com" href="https://teamcyst.com/">Team CYST</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

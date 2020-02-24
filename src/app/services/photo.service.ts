@@ -6,9 +6,8 @@ import { Router } from '@angular/router';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 
 export interface Photo {
- data: any;
- result: any;
- 
+  data: any;
+  result: any;
 }
 export class PhotoService {
   public photos: Photo[] = [];
@@ -35,7 +34,8 @@ export class PhotoService {
   loadProcessed() {
     this.storage.get('processedphotos').then((photos) => {
       this.ProcessedPhotos = photos || [];
-    });}
+    });
+  }
 
   go() {
     this.router.navigateByUrl('list');
@@ -49,19 +49,19 @@ export class PhotoService {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
-     };
+    };
 
     this.camera.getPicture(options).then((imageData) => {
-       this.photos.unshift({
-         data: 'data:image/jpeg;base64,' + imageData,
-         result: '',
-        
-       });
-       this.storage.set('photos', this.photos);
-       this.go();
-     }, (err) => {
-       console.log('Camera Issues: ' + err);
-     });
+      this.photos.unshift({
+        data: 'data:image/jpeg;base64,' + imageData,
+        result: '',
+
+      });
+      this.storage.set('photos', this.photos);
+      this.go();
+    }, (err) => {
+      console.log('Camera Issues: ' + err);
+    });
   }
 
   takePictures() {
@@ -73,7 +73,7 @@ export class PhotoService {
 
   }
 
-  testSamples(image){
+  testSamples(image) {
     this.photos.unshift({
       data: image,
       result: ''

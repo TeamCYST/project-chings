@@ -3,32 +3,32 @@
         <ion-toolbar>
             <ion-title>Object Detection</ion-title>
             <ion-buttons slot="end">
-         <ion-button  routerLink="/gallery">
-                                History   
-                            </ion-button>
-         <ion-button  routerLink="/about">
-                                About   
-                            </ion-button>
-        </ion-buttons>
+                <ion-button routerLink="/gallery">
+                    History
+                </ion-button>
+                <ion-button routerLink="/about">
+                    About
+                </ion-button>
+            </ion-buttons>
         </ion-toolbar>
-        
+
     </ion-header>
     <div class="content">
         <ion-grid>
-          
+
             <ion-row>
                 <div class="cards-title">
                     <h3>Samples</h3>
                     <div class="cards">
                         <ion-slides>
                             <ion-slide *ngFor="let image of images">
-                                    <div class="image-slide" (click) = photoService.testSamples(image)>
-                                        <div class="overlay"></div>
-                                        <img [src]="image" alt="slide 1">
-                                        
-                                    </div>
+                                <div class="image-slide" (click)=photoService.testSamples(image)>
+                                    <div class="overlay"></div>
+                                    <img [src]="image" alt="slide 1">
+
+                                </div>
                             </ion-slide>
-                            
+
                         </ion-slides>
                     </div>
                 </div>
@@ -57,8 +57,8 @@
                             </button>
                         </ion-col>
                     </div>
-                    <div text-center margin>
-                           
+                    <div class="ion-text-center ion-margin">
+
                     </div>
                 </div>
             </ion-row>
